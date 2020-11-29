@@ -23,7 +23,7 @@ email: catzheng@umich.edu
 description: >- # this means to ignore newlines until "baseurl:"
   Personal website made by Catherine Zheng. Powered by Jekyll.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://catzheng22.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://www.catzheng22.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: null
 github_username:  catzheng22
 
