@@ -1,0 +1,21 @@
+name: Build and test /blog before deploying to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test-blog:
+    runs-on: ubuntu-16.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - name: Build and Deploy
+        uses: jeoy/github-deploy-actions@v1.0.1
+        env:
+          COMMIT_EMAIL: catzheng@umich.edu
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BUILD_SCRIPT: bundle exec jekyll build && python3 test_blog_posts.py
+          FOLDER: _site
