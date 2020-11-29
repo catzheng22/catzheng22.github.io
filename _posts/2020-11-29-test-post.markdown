@@ -1,0 +1,7 @@
+---
+layout: post
+title:  Test Post
+date:   2020-11-29 17:34:51 -0400
+categories: eecs201
+---
+Just a temp post to test automation for this statically generated website!

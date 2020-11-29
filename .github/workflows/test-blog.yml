@@ -11,11 +11,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      
+
       - name: Build and Deploy
         uses: jeoy/github-deploy-actions@v1.0.1
         env:
           COMMIT_EMAIL: catzheng@umich.edu
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BUILD_SCRIPT: bundle exec jekyll build && python3 test_blog_posts.py
+          BUILD_SCRIPT: bundle exec jekyll build && python3 test_blog_posts.py > test-blog.out 2> test-blog.err
           FOLDER: _site
+      
+      - name: Upload test artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: script output
+          path: /Users/catzheng/Coding/catzheng22.github.io/test-blog.*
