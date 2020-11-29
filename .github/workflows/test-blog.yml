@@ -1,4 +1,4 @@
-name: Build and test /blog before deploying to GitHub Pages
+name: Build, Test, and Deploy
 
 on:
   push:
@@ -7,17 +7,26 @@ on:
 
 jobs:
   test-blog:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-16.04
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
       - name: Build
         run: bundle exec jekyll build
+      
+      - name: Install Dependencies
+        run: bundle install
 
-      - name: Test blog posts
-        run: python3 test_blog_posts.py
-        
+      - name: Run tests
+        run: python3 test_blog_posts.py &> test-blog.out
+      
+      - name: Upload test artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: script output
+          path: test-blog.out
+
       - name: Build and Deploy
         uses: jeoy/github-deploy-actions@v1.0.1
         env:
